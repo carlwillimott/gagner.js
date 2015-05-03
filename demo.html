@@ -2,11 +2,14 @@
 
 <head>
     <title>gagner.js demo</title>
-    <link rel="stylesheet" href="/src/css/gagner.min.css" type="text/css" media="all"/>
-    <script src="/src/js/gagner.min.js"></script>
+    <link rel="stylesheet" href="src/css/gagner.min.css" type="text/css" media="all"/>
+    <script src="src/js/gagner.js"></script>
     <script>
         window.onload = function() {
-            var gagner = new Gagner(document.getElementById('my-button'));
+            var options = {
+                showResults: 2
+            };
+            var gagner = new Gagner(document.getElementById('my-button'), options);
         }
     </script>
 </head>
