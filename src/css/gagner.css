@@ -1,0 +1,8 @@
+/* line 4, ../scss/gagner.scss */
+.gagner-normal {
+  padding: 20px 10px;
+  border: 1px solid black;
+  background: #ededed;
+  display: inline-block;
+  cursor: pointer;
+}
