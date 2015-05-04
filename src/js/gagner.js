@@ -11,6 +11,11 @@ var Gagner = (function() {
             showResults: 1
         },
 
+        area: {
+            height: false,
+            width: false
+        },
+
         init: function(elements, options) {
 
             // Assign all of the elements to the object·
@@ -24,10 +29,17 @@ var Gagner = (function() {
                 }
             }
 
+            // generate all of the remaining functionality.
+            this.calculateArea();
             this.bindEvents();
             this.generateScoreboard();
 
 
+        },
+
+        calculateArea: function() {
+            this.area.width = window.innerWidth;
+            this.area.height = window.innerHeight;
         },
 
         bindEvents: function() {
@@ -55,6 +67,7 @@ var Gagner = (function() {
 
     };
 
+    // Provide the object constructor to the outside world.
     return function(elements, options) {
       setup.init(elements, options);
     };
