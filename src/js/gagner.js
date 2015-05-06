@@ -73,12 +73,18 @@ var Gagner = (function() {
 
         },
 
+        pluckMessage: function() {
+            // http://stackoverflow.com/a/5915122
+            return this.messages[Math.floor(Math.random() * this.messages.length)];
+        },
+
         messages: [
             "Almost!",
             "Not quite.",
             "Is that all you've got?",
             "C'mon - try harder!",
-            "Not a chance."
+            "Not a chance.",
+            "What a joke!"
         ]
 
     };
