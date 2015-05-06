@@ -29,11 +29,19 @@ var Gagner = (function() {
                 }
             }
 
-            // generate all of the remaining functionality.
+            // Check to see if we have any messages in the setup object.
+            if (typeof options.messages !== 'undefined') {
+                for (var j in options.messages) {
+                    if (options.messages.hasOwnProperty(j) && typeof options.messages[j] === "string") {
+                        this.messages.push(options.messages[j]);
+                    }
+                }
+            }
+
+            // Generate all of the remaining functionality.
             this.calculateArea();
             this.bindEvents();
             this.generateScoreboard();
-
 
         },
 
@@ -63,7 +71,15 @@ var Gagner = (function() {
             }
 
 
-        }
+        },
+
+        messages: [
+            "Almost!",
+            "Not quite.",
+            "Is that all you've got?",
+            "C'mon - try harder!",
+            "Not a chance."
+        ]
 
     };
 
