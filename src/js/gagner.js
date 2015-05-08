@@ -16,6 +16,12 @@ var Gagner = (function() {
             width: false
         },
 
+        stats: {
+            counter: null,
+            misses: 0,
+            travelled: 0
+        },
+
         init: function(elements, options) {
 
             // Assign all of the elements to the object·
@@ -41,8 +47,8 @@ var Gagner = (function() {
             // Generate all of the remaining functionality.
             this.calculateArea();
             this.setupElements();
-            this.bindEvents();
             this.generateScoreboard();
+            this.bindEvents();
 
         },
 
@@ -71,12 +77,29 @@ var Gagner = (function() {
                 self.changePosition(element, self);
             });
 
+            this.buttons.addEventListener('click', function(element) {
+                element.preventDefault();
+            });
+
         },
 
         changePosition: function(element, self) {
             var current = element.target;
             current.style.left = Math.floor(Math.random() * (self.area.width - current.offsetWidth));
             current.style.top = Math.floor(Math.random() * (self.area.height - current.offsetHeight));
+            self.updateMisses();
+        },
+
+        updateMisses: function() {
+
+            var next = this.stats.misses + 1;
+
+            if (this.stats.counter) {
+                this.stats.counter.innerHTML = next;
+            }
+
+            this.stats.misses = next;
+
         },
 
         generateScoreboard: function() {
@@ -84,9 +107,24 @@ var Gagner = (function() {
             var name = 'gagner-scoreboard';
 
             if (!document.getElementById(name) && document.body != null) {
+
                 var scoreboard = document.createElement('div');
                 scoreboard.id = name;
+
+                var text = document.createElement('p');
+                text.innerHTML = 'Total misses:';
+
+                var counter = document.createElement('p');
+                counter.id = 'gagner-misses';
+                counter.innerHTML = this.stats.misses;
+
+                this.stats.counter = counter;
+
+                scoreboard.appendChild(text);
+                scoreboard.appendChild(counter);
+
                 document.body.appendChild(scoreboard);
+
             }
 
 
