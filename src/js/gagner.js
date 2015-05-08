@@ -46,9 +46,13 @@ var Gagner = (function() {
 
         },
 
-        calculateArea: function() {
-            this.area.width = window.innerWidth;
-            this.area.height = window.innerHeight;
+        calculateArea: function(self) {
+
+            var current = self ? self : this;
+
+            current.area.width = window.innerWidth;
+            current.area.height = window.innerHeight;
+
         },
 
         setupElements: function() {
@@ -59,6 +63,10 @@ var Gagner = (function() {
 
             var self = this;
 
+           window.addEventListener('resize', function() {
+                self.calculateArea(self);
+            });
+
             this.buttons.addEventListener('mouseover', function(element) {
                 self.changePosition(element, self);
             });
@@ -68,6 +76,7 @@ var Gagner = (function() {
         changePosition: function(element, self) {
             var current = element.target;
             current.style.left = Math.floor(Math.random() * (self.area.width - current.offsetWidth));
+            current.style.top = Math.floor(Math.random() * (self.area.height - current.offsetHeight));
         },
 
         generateScoreboard: function() {
