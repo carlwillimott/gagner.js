@@ -18,8 +18,11 @@ var Gagner = (function() {
 
         stats: {
             counter: null,
+            distance: null,
             misses: 0,
-            travelled: 0
+            travelled: 0,
+            prevX: 0,
+            prevY: 0
         },
 
         init: function(elements, options) {
@@ -73,21 +76,41 @@ var Gagner = (function() {
                 self.calculateArea(self);
             });
 
-            this.buttons.addEventListener('mouseover', function(element) {
-                self.changePosition(element, self);
+            document.addEventListener('mousemove', function(e) {
+                self.trackMouseDistance(e, self);
+                self.updateDistance();
             });
 
-            this.buttons.addEventListener('click', function(element) {
-                element.preventDefault();
+            this.buttons.addEventListener('mouseover', function(e) {
+                self.changePosition(e, self);
+            });
+
+            this.buttons.addEventListener('click', function(e) {
+                e.preventDefault();
             });
 
         },
 
-        changePosition: function(element, self) {
-            var current = element.target;
+        changePosition: function(e, self) {
+            var current = e.target;
             current.style.left = Math.floor(Math.random() * (self.area.width - current.offsetWidth));
             current.style.top = Math.floor(Math.random() * (self.area.height - current.offsetHeight));
             self.updateMisses();
+        },
+
+        trackMouseDistance: function(e, self) {
+
+            if (this.stats.misses < self.defaults.showResults) {
+                return false;
+            }
+
+            // http://jsfiddle.net/RoryMcCrossan/8ahQB/
+            var distance = self.stats.travelled;
+            var prevX = self.stats.prevX;
+            var prevY = self.stats.prevY;
+            var xMoved = Math.abs(e.pageX - prevX);
+            var yMoved = Math.abs(e.pageY - prevY);
+            self.stats.travelled = distance + xMoved + yMoved;
         },
 
         updateMisses: function() {
@@ -100,6 +123,12 @@ var Gagner = (function() {
 
             this.stats.misses = next;
 
+        },
+
+        updateDistance: function() {
+            if (this.stats.distance) {
+                this.stats.distance.innerHTML = this.stats.travelled + 'px';
+            }
         },
 
         generateScoreboard: function() {
@@ -118,10 +147,20 @@ var Gagner = (function() {
                 counter.id = 'gagner-misses';
                 counter.innerHTML = this.stats.misses;
 
+                var text2 = document.createElement('p');
+                text2.innerHTML = 'Travelled:';
+
+                var distance = document.createElement('p');
+                distance.id = 'gagner-distance';
+                distance.innerHTML = '0px';
+
                 this.stats.counter = counter;
+                this.stats.distance = distance;
 
                 scoreboard.appendChild(text);
                 scoreboard.appendChild(counter);
+                scoreboard.appendChild(text2);
+                scoreboard.appendChild(distance);
 
                 document.body.appendChild(scoreboard);
 
