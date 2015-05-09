@@ -4,7 +4,7 @@ var Gagner = (function(window, document) {
 
     var setup = {
 
-        buttons: false,
+        buttons: null,
 
         // Default configuration settings.
         defaults: {
@@ -87,6 +87,7 @@ var Gagner = (function(window, document) {
             });
 
             this.buttons.addEventListener('mouseover', function(e) {
+                self.provideMessage();
                 self.changePosition(e, self);
             });
 
@@ -178,6 +179,15 @@ var Gagner = (function(window, document) {
             return element;
         },
 
+        provideMessage: function() {
+
+            // If the stats counter is an interval of the setting.
+            if (this.stats.misses % this.defaults.intervals === 0) {
+                this.buttons.innerHTML = this.pluckMessage();
+            }
+
+        },
+
         pluckMessage: function() {
             // http://stackoverflow.com/a/5915122
             return this.messages[Math.floor(Math.random() * this.messages.length)];
@@ -189,7 +199,11 @@ var Gagner = (function(window, document) {
             "Is that all you've got?",
             "C'mon - try harder!",
             "Not a chance.",
-            "What a joke!"
+            "What a joke!",
+            "Yeah right...",
+            "Zzzzzzzzzzz",
+            "Just click me!",
+            "Give up."
         ]
 
     };
