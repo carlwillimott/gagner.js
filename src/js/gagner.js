@@ -147,38 +147,30 @@ var Gagner = (function() {
 
             var name = 'gagner-scoreboard';
 
-            if (!document.getElementById(name) && document.body != null) {
-
-                var scoreboard = document.createElement('div');
-                scoreboard.id = name;
-
-                var text = document.createElement('p');
-                text.innerHTML = 'Total misses:';
-
-                var counter = document.createElement('p');
-                counter.id = 'gagner-misses';
-                counter.innerHTML = this.stats.misses;
-
-                var text2 = document.createElement('p');
-                text2.innerHTML = 'Travelled:';
-
-                var distance = document.createElement('p');
-                distance.id = 'gagner-distance';
-                distance.innerHTML = '0px';
-
-                this.stats.counter = counter;
-                this.stats.distance = distance;
-
-                scoreboard.appendChild(text);
-                scoreboard.appendChild(counter);
-                scoreboard.appendChild(text2);
-                scoreboard.appendChild(distance);
-
-                document.body.appendChild(scoreboard);
-
+            if (document.getElementById(name)) {
+                return false;
             }
 
+            var scoreboard = this.generateElement('div', name);
+            var text = this.generateElement('p', false, 'Total misses:');
+            var counter = this.generateElement('p', 'gagner-misses', this.stats.misses);
+            var text2 = this.generateElement('p', false, 'Travelled:');
+            var distance = this.generateElement('p', 'gagner-distance', '0px');
+            this.stats.counter = counter;
+            this.stats.distance = distance;
+            scoreboard.appendChild(text);
+            scoreboard.appendChild(counter);
+            scoreboard.appendChild(text2);
+            scoreboard.appendChild(distance);
+            document.body.appendChild(scoreboard);
 
+        },
+
+        generateElement: function(type, id, innerHTML) {
+            var element = document.createElement(type);
+            element.id = id ? id : null;
+            element.innerHTML = innerHTML ? innerHTML : null;
+            return element;
         },
 
         pluckMessage: function() {
