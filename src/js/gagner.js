@@ -105,12 +105,24 @@ var Gagner = (function() {
             }
 
             // http://jsfiddle.net/RoryMcCrossan/8ahQB/
-            var distance = self.stats.travelled;
+            var travelled = self.stats.travelled;
             var prevX = self.stats.prevX;
             var prevY = self.stats.prevY;
-            var xMoved = Math.abs(e.pageX - prevX);
-            var yMoved = Math.abs(e.pageY - prevY);
-            self.stats.travelled = distance + xMoved + yMoved;
+            var nowX = e.pageX;
+            var nowY = e.pageY;
+            var xMoved = Math.abs(nowX - prevX);
+            var yMoved = Math.abs(nowY - prevY);
+
+            if (prevX === 0 && prevY === 0) {
+                self.stats.prevX = nowX;
+                self.stats.prevY = nowY;
+                return false;
+            }
+
+            self.stats.travelled = travelled + xMoved + yMoved;
+            self.stats.prevX = nowX;
+            self.stats.prevY = nowY;
+
         },
 
         updateMisses: function() {
