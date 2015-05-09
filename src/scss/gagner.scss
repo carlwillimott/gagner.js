@@ -6,7 +6,7 @@
 @import 'partials/variables';
 
 .gagner-normal {
-
+  font-family: $default-font;
   font-size: 18px;
   padding: 15px 35px;
   border: 1px solid $black;
@@ -16,7 +16,7 @@
   text-transform: uppercase;
   @include border-radius(4px);
   @include box-shadow(3px 3px 7px 3px $gray);
-
+  z-index: 100;
 }
 
 .gagner-light {
@@ -24,5 +24,31 @@
 }
 
 .gagner-dark {
+
+}
+
+#gagner-scoreboard {
+
+  font-family: $default-font;
+  padding: 20px 50px;
+  margin: 20px;
+  border: 1px solid $black;
+  background: $gray;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  @include border-radius(4px);
+  @include box-shadow(3px 3px 7px 3px $gray);
+  z-index: 50;
+
+  p {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  #gagner-misses, #gagner-distance {
+    font-size: 24px;
+  }
 
 }

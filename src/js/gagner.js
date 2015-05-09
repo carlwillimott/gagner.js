@@ -8,7 +8,8 @@ var Gagner = (function(window, document) {
 
         // Default configuration settings.
         defaults: {
-            showResults: 1
+            showResults: 1,
+            intervals: 5
         },
 
         area: {
@@ -76,7 +77,7 @@ var Gagner = (function(window, document) {
 
             var self = this;
 
-           window.addEventListener('resize', function() {
+            window.addEventListener('resize', function() {
                 self.calculateArea(self);
             });
 
@@ -156,9 +157,9 @@ var Gagner = (function(window, document) {
             }
 
             var scoreboard = this.generateElement('div', name);
-            var text = this.generateElement('p', false, 'Total misses:');
-            var counter = this.generateElement('p', 'gagner-misses', this.stats.misses);
-            var text2 = this.generateElement('p', false, 'Travelled:');
+            var text = this.generateElement('p', false, 'Total misses');
+            var counter = this.generateElement('p', 'gagner-misses', '0');
+            var text2 = this.generateElement('p', false, 'Travelled');
             var distance = this.generateElement('p', 'gagner-distance', '0px');
             this.stats.counter = counter;
             this.stats.distance = distance;
@@ -172,8 +173,8 @@ var Gagner = (function(window, document) {
 
         generateElement: function(type, id, innerHTML) {
             var element = document.createElement(type);
-            element.id = id ? id : null;
-            element.innerHTML = innerHTML ? innerHTML : null;
+            element.id = id ? id : "";
+            element.innerHTML = innerHTML ? innerHTML : "";
             return element;
         },
 
