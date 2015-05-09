@@ -1,4 +1,4 @@
-var Gagner = (function() {
+var Gagner = (function(window, document) {
 
     'use strict';
 
@@ -26,6 +26,10 @@ var Gagner = (function() {
         },
 
         init: function(elements, options) {
+
+            if (document.readyState !== 'complete') {
+                throw new Error('Document is not ready yet.');
+            }
 
             // Assign all of the elements to the object·
             // @ TODO - determine if we have an array or just one element.
@@ -194,4 +198,4 @@ var Gagner = (function() {
       setup.init(elements, options);
     };
 
-})();
+})(window, document);
