@@ -38,7 +38,7 @@ var Gagner = (function(window, document) {
 
             // Loop over all of the properties and update the defaults if valid.
             for (var i in options) {
-                if (options.hasOwnProperty(i) && this.defaults.hasOwnProperty(options[i])) {
+                if (options.hasOwnProperty(i) && this.defaults.hasOwnProperty(i)) {
                     this.defaults[i] = options[i];
                 }
             }
