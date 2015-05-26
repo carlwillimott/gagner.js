@@ -7,15 +7,17 @@
 
 .gagner-normal {
   font-family: $default-font;
+  max-width: 150px;
   font-size: 18px;
+  text-align: center;
   padding: 15px 35px;
   border: 1px solid $black;
-  background: $gray;
+  background: $green;
   display: inline-block;
   cursor: pointer;
   text-transform: uppercase;
   @include border-radius(4px);
-  @include box-shadow(3px 3px 7px 3px $gray);
+  @include box-shadow(3px 3px 7px 3px $blue);
   z-index: 100;
 }
 
@@ -28,17 +30,17 @@
 }
 
 #gagner-scoreboard {
-
+  color: $black;
   font-family: $default-font;
   padding: 20px 50px;
   margin: 20px;
   border: 1px solid $black;
-  background: $gray;
+  background: $light-gray;
   position: absolute;
   bottom: 0;
   right: 0;
   @include border-radius(4px);
-  @include box-shadow(3px 3px 7px 3px $gray);
+  @include box-shadow(3px 3px 7px 3px $dark-gray);
   z-index: 50;
 
   p {
