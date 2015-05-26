@@ -6,6 +6,8 @@ var Gagner = (function(window, document) {
 
         buttons: null,
 
+        scoreboard: null,
+
         // Default configuration settings.
         defaults: {
             showResults: 1,
@@ -139,6 +141,10 @@ var Gagner = (function(window, document) {
                 this.stats.counter.innerHTML = next;
             }
 
+            if (next >= this.defaults.showResults) {
+                this.scoreboard.style.display = 'block';
+            }
+
             this.stats.misses = next;
 
         },
@@ -168,7 +174,13 @@ var Gagner = (function(window, document) {
             scoreboard.appendChild(counter);
             scoreboard.appendChild(text2);
             scoreboard.appendChild(distance);
+
+            if (this.defaults.showResults > 0) {
+                scoreboard.style.display = 'none';
+            }
+
             document.body.appendChild(scoreboard);
+            this.scoreboard = scoreboard;
 
         },
 
