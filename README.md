@@ -10,7 +10,8 @@ Once you have included the script on your page, all you need to do is decide whi
 <script>
     window.onload = function() {
         var options = {
-            showResults: 2
+            showResults: 2,
+            intervals: 7
         };
         var gagner = new Gagner(document.getElementById('my-button'), options);
     }
@@ -22,8 +23,8 @@ Although you are more than welcome to use this script with other libraries such 
 ### Options
 There are a few different options which can be passed on creation to override some of the settings. They are listed as follows:
 
-* showResults (number) - The number of misses before the scoreboard should be shown.
-* intervals (number) - The number of misses before another message will be displayed.
+* showResults (number) - The number of misses before the scoreboard should be shown (default 1).
+* intervals (number) - The number of misses before another message will be displayed (default 5).
 
 ### Styles
 Included in this repo are three different button styles. All you need to do is add the class to your element depending on the theme of your choice. The possible classes are:
